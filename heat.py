@@ -27,12 +27,12 @@ def inicializa_T(T, N_steps, h):
 
 def calcula_b(b, N_steps, r):
     for j in range(1, N_steps - 1):
-        b[j] = r * T[j+1] + (1-2*r) * T[j] + r * T[j-1]
+        b[j] = r * T[j+1] + 2*(1-r) * T[j] + r * T[j-1]
 
 
-def calcula_alpha_y_beta(alhpa, beta, b, r, N_Steps):
+def calcula_alpha_y_beta(alpha, beta, b, r, N_Steps):
     Aplus = -1 * r
-    Acero = (1 + 2 * r)
+    Acero = (2 + 2 * r)
     Aminus = -1 * r
     alpha[0] = 0
     beta[0] = 0  # viene de la condicion de borde T(t, 0) = 0
@@ -86,7 +86,7 @@ for i in range(1, N_pasos_temporales):
 
 x = np.linspace(0, 1, N_steps)
 
-fig = plt.figure(1)
+fig = plt.figure(3)
 fig.clf()
 ax = fig.add_subplot(111)
 
@@ -96,7 +96,7 @@ ax.set_ylim(0, 1)
 
 # ejemplo 2
 # usar el plano x, t y plotear T en la 3a dimension
-fig2 = plt.figure(2)
+fig2 = plt.figure(4)
 fig2.clf()
 ax2 = fig2.add_subplot(111)
 y = np.arange(0, N_pasos_temporales) * dt
